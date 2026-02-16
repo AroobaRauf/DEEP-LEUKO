@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepLeuko | Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <h2 class="logo-text">DeepLeuko</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active"><a href="{{ url_for('dashboard') }}"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('disease_analysis') }}"><i class="fas fa-microscope"></i> Disease Analysis</a></li>
+                <li><a href="{{ url_for('case_reports') }}"><i class="fas fa-file-medical"></i> Case Reports</a></li>
+     
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main-wrapper" id="mainWrapper">
+        
+        <header class="top-nav">
+            <div class="nav-left">
+                <i class="fas fa-bars toggle-icon" id="menuBtn"></i>
+                <div class="header-logo">
+                    <span class="logo-text-nav" style="margin-left: 10px; font-weight: bold; font-size: 1.2rem;">DeepLeuko</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <span class="welcome-msg">Welcome, {{ username }}</span>
+                <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+            </div>
+        </header>
+
+        <main class="content-body" id="mainContent">
+            <section class="welcome-section">
+                <div class="welcome-header">
+                    <i class="fas fa-microscope welcome-icon" style="font-size: 2.5rem; color: var(--primary-emerald); margin-bottom: 1rem;"></i>
+                    <h1>Welcome to DeepLeuko</h1>
+                    <p>Upload a high-quality blood smear image to begin AI-powered diagnosis. Our system provides instant leukemia subtype prediction, confidence scores, and explainable AI visualization.</p>
+                </div>
+
+                <div class="module-grid">
+                    <a href="{{ url_for('disease_analysis') }}" class="module-card">
+                        <i class="fas fa-bullseye card-icon target-color"></i>
+                        <h3>Accurate Predictions</h3>
+                        <p>AI-driven leukemia classification</p>
+                    </a>
+                    <a href="{{ url_for('visual_page') }}" class="module-card">
+                        <i class="fas fa-search card-icon visual-color"></i>
+                        <h3>Grad-CAM Visual</h3>
+                        <p>AI focus area visualization</p>
+                    </a>
+                   
+                    
+                    <a href="{{ url_for('case_reports') }}" class="module-card">
+                        <i class="fas fa-file-pdf card-icon report-color"></i>
+                        <h3>Export Reports</h3>
+                        <p>Detailed PDF documentation</p>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const mainWrapper = document.getElementById('mainWrapper');
+
+        menuBtn.addEventListener('click', (e) => {
+            // Stop propagation to prevent immediate closing if you add a 'click outside' listener later
+            e.stopPropagation(); 
+            sidebar.classList.toggle('active');
+            mainWrapper.classList.toggle('sidebar-open');
+        });
+    </script>
+</body>
+</html>

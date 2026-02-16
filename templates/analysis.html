@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DeepLeuko | Disease Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+       
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand" style="margin-bottom: 20px;">
+            <h2 style="color: var(--accent-green);">DeepLeuko</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="/dashboard"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                <li class="active"><a href="/analysis"><i class="fas fa-microscope"></i> Disease Analysis</a></li>
+                <li><a href="/reports"><i class="fas fa-file-medical"></i> Case Reports</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main-wrapper" id="mainWrapper">
+        <header class="top-nav">
+            <div class="nav-left">
+                <i class="fas fa-bars toggle-icon" id="menuBtn"></i>
+                <span class="logo-text">DeepLeuko Analysis</span>
+            </div>
+            <div class="nav-right">
+                <span class="welcome-msg">Welcome, {{ username }}</span>
+                <a href="/logout" class="logout-link">Logout</a>
+            </div>
+        </header>
+
+        <main class="content-body">
+            <div class="page-title-section">
+                <h2>Leukemia Image Classification</h2>
+                <p>Upload a microscopic blood smear image for AI-based analysis.</p>
+            </div>
+
+            <div class="report-container"> 
+                <h3><i class="fas fa-file-import"></i> Input Selection</h3>
+                
+                <div class="drop-zone" id="dropZone" style="border: 2px dashed #cbd5e1; padding: 40px; text-align: center; margin: 20px 0; border-radius: 12px; cursor: pointer; background: #fafafa;">
+                    <input type="file" id="fileInput" hidden accept=".jpg,.png,.jpeg">
+                    <i class="fas fa-file-medical" id="uploadIcon" style="font-size: 3.5rem; color: #cbd5e1; margin-bottom: 15px; display: block;"></i>
+                    <img id="imagePreview" src="" alt="Selected Blood Smear">
+                    <p id="filePreviewName">Drag & Drop image here or <span style="color: var(--accent-green); font-weight: bold;">Browse</span></p>
+                </div>
+
+                <div class="action-row">
+                    <button id="analyzeBtn" class="btn-download" disabled>
+                        <i class="fas fa-wand-magic-sparkles"></i> Analyze Image
+                    </button>
+                    <button id="removeBtn" type="button">
+                        <i class="fas fa-trash-can"></i> Clear
+                    </button>
+                </div>
+            </div>
+
+            <div id="resultsSection" class="results-card">
+                <h3 style="color: #1e293b;"><i class="fas fa-clipboard-check"></i> Analysis Findings</h3>
+                <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 15px 0;">
+                
+                <div class="result-grid">
+                    <div class="info-container">
+                        <div id="badgeStatus" class="status-badge">Processing</div>
+                        <h2 style="margin: 0 0 10px 0; font-size: 1.8rem;">
+                            <span id="resClass" style="color: #0f172a;">-</span>
+                        </h2>
+                        <p style="font-size: 1.1rem; color: #475569;">
+                            Confidence Score: <strong id="resConf" style="color: var(--accent-green);">-</strong>%
+                        </p>
+                        
+                        <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #cbd5e1;">
+                            <p style="font-size: 0.85rem; line-height: 1.5; color: #64748b;">
+                                <strong>System Note:</strong> Diagnosis is based on automated morphological feature extraction. Please correlate with clinical findings.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="heatmap-container">
+                        <p style="font-size: 0.8rem; font-weight: 700; color: #64748b; margin-bottom: 10px;">
+                            XAI VISUALIZATION (GRAD-CAM)
+                        </p>
+                        <img id="resHeatmap" src="" alt="Heatmap showing areas of interest">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+ <script src="{{ url_for('static', filename='js/analysis.js') }}"></script>
+
+</body>
+</html>

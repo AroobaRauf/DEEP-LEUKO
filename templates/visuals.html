@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepLeuko | Grad-CAM Visual</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-emerald: #065f46;
+            --accent-green: #10b981;
+            --dark-slate: #0f172a;
+            --bg-light: #f8fafc;
+        }
+
+        .content-body { padding: 40px; max-width: 1200px; margin: 0 auto; }
+
+        /* Report Layout */
+        .report-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .image-box { text-align: center; }
+
+        .image-box p {
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .image-box img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background: #f1f5f9;
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f8fafc;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .diagnosis-info {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .btn-action {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-print { background: var(--dark-slate); color: white; }
+        .btn-new { background: var(--accent-green); color: white; margin-left: 10px; }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand"><span class="logo-text">DeepLeuko</span></div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="/dashboard"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                <li><a href="/analysis"><i class="fas fa-microscope"></i> Disease Analysis</a></li>
+                <li class="active"><a href="/visual"><i class="fas fa-search"></i> Grad-CAM Visual</a></li>
+                <li><a href="/reports"><i class="fas fa-file-medical"></i> Case Reports</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main-wrapper" id="mainWrapper">
+        <header class="top-nav">
+            <div class="nav-left">
+                <i class="fas fa-bars toggle-icon" id="menuBtn"></i>
+                <span class="logo-text" style="font-weight: bold; margin-left: 5px;">Explainable AI</span>
+            </div>
+            <div class="nav-right">
+                <span class="welcome-msg">Welcome, {{ username }}</span>
+                <a href="/logout" class="logout-link">Logout</a>
+            </div>
+        </header>
+
+        <main class="content-body">
+            <div id="dynamicContent">
+                <div class="report-container" id="emptyState" style="text-align: center; padding: 60px; background: white; border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <i class="fas fa-folder-open" style="font-size: 4rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+                    <h3>No Active Analysis Found</h3>
+                    <p style="color: #94a3b8;">Please perform a scan in the Analysis section to view the Grad-CAM heatmap.</p>
+                    <a href="/analysis" class="btn-new" style="margin-top: 20px; display: inline-block;">Start New Analysis</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/visuals.js') }}"></script>
+</body>
+</html>

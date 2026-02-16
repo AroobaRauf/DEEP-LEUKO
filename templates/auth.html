@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DeepLeuko | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styl.css') }}">
+</head>
+<body class="auth-bg">
+    <div class="auth-card">
+        <div class="auth-header">
+            <span class="micro-icon">🔬</span>
+            <h2>Doctor Login</h2>
+            <p>Access your secure medical dashboard</p>
+        </div>
+
+        <form id="loginForm" method="POST" action="/auth">
+
+            <div class="input-group email-wrapper">
+                <label>Email</label>
+                <div class="input-with-icon" style="position: relative; display: flex; align-items: center;">
+                    <input type="email" name="username" id="login-email" placeholder="Enter your email" required style="width: 100%;">
+                    <i class="fas fa-envelope" style="position: absolute; right: 15px; color: #64748b;"></i>
+                </div>
+            </div>
+
+            <div class="input-group password-wrapper">
+                <label>Password</label>
+                <div class="input-with-icon" style="position: relative; display: flex; align-items: center;">
+                    <input type="password" name="password" id="login-password" placeholder="••••••••" required style="width: 100%;">
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword('login-password', this)" style="position: absolute; right: 15px; cursor: pointer; color: #64748b;"></i>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Login</button>
+
+            <p class="auth-footer">Don't have an account? <a href="{{ url_for('register') }}">Create Account</a></p>
+        </form>
+    </div>
+</body>
+</html>

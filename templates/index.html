@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DeepLeuko | Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styl.css') }}">
+</head>
+<body class="splash-body">
+    <div class="splash-container">
+        <div class="logo-animation">
+            <span class="micro-icon">🔬</span>
+        </div>
+        <h1 class="logo-text">DeepLeuko</h1>
+        <p class="tagline">AI-Powered Leukemia Classification</p>
+        <div class="loading-dots">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <script>
+        // Module: Automatic redirection to Auth page after 3 seconds
+        setTimeout(() => {
+            window.location.href = "/auth";
+        }, 3000);
+    </script>
+</body>
+</html>

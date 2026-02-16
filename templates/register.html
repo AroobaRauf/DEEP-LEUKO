@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepLeuko | Create Account</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styl.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="auth-bg">
+    <div class="auth-card" style="max-width: 500px;"> <div class="auth-header">
+            <span class="micro-icon">🔬</span>
+            <h2>Create Account</h2>
+            <p>Join the DeepLeuko Research Network</p>
+        </div>
+
+        <form id="registrationForm" method="POST" action="/register">
+            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                <div class="input-group" style="flex: 1;">
+                    <label>First Name</label>
+                    <input type="text" name="first_name" placeholder="John" required style="width: 100%;">
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label>Last Name</label>
+                    <input type="text" name="last_name" placeholder="Doe" required style="width: 100%;">
+                </div>
+            </div>
+            <div class="input-group email-wrapper">
+               <label>Email</label>
+                  <div class="input-with-icon" style="position: relative; display: flex; align-items: center;">
+                     <input type="email" name="email" id="reg-email" placeholder="Enter your email" required style="width: 100%;">
+                     <i class="fas fa-envelope" style="position: absolute; right: 15px; color: #64748b;"></i>
+                 </div>
+            </div>
+
+
+            <div class="input-group">
+                <label>Professional Role</label>
+                <select name="role" id="role" required style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--border);">
+                    <option value="" disabled selected>Select your clinical role</option>
+                    <option value="Hematologist">Hematologist</option>
+                    <option value="Pathologist">Pathologist</option>
+                    <option value="Laboratory Technician">Laboratory Technician</option>
+                    <option value="Medical Researcher">Medical Researcher</option>
+                    <option value="Oncologist">Oncologist</option>
+                </select>
+            </div>
+
+            <div class="input-group password-wrapper">
+                <label>Password</label>
+                <div class="input-with-icon" style="position: relative; display: flex; align-items: center;">
+                    <input type="password" name="password" id="reg-password" placeholder="••••••••" required style="width: 100%;">
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword('reg-password', this)" style="position: absolute; right: 15px; cursor: pointer; color: #64748b;"></i>
+                </div>
+            </div>
+
+            <div class="input-group password-wrapper">
+                <label>Confirm Password</label>
+                <div class="input-with-icon" style="position: relative; display: flex; align-items: center;">
+                    <input type="password" id="confirm-password" placeholder="••••••••" required style="width: 100%;">
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword('confirm-password', this)" style="position: absolute; right: 15px; cursor: pointer; color: #64748b;"></i>
+                </div>
+            </div>
+          
+    
+    <button type="submit" class="btn-primary" style="width: 100%; cursor: pointer; margin-top: 10px;">
+        Register Account
+    </button>
+    
+    <p class="auth-footer">Already have an account? <a href="{{ url_for('auth') }}">Login here</a></p>
+
+
+ </div>
+    
+
+    <script>
+        function togglePassword(inputId, icon) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        }
+    </script>
+</body>
+</html>

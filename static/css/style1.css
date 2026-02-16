@@ -1,0 +1,98 @@
+:root {
+            --primary-emerald: #065f46;
+            --accent-green: #10b981;
+            --dark-slate: #0f172a;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --sidebar-width: 260px;
+        }
+
+        body { background-color: var(--bg-light); margin: 0; overflow-x: hidden; }
+
+        /* Sidebar & Wrapper logic */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--dark-slate);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: calc(-1 * var(--sidebar-width));
+            transition: left 0.3s ease-in-out;
+            z-index: 1100;
+        }
+        .sidebar.active { left: 0; }
+
+        .main-wrapper {
+            width: 100%;
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-wrapper.sidebar-open { transform: translateX(var(--sidebar-width)); }
+
+        /* Table Styling */
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+
+        .report-table th {
+            text-align: left;
+            padding: 15px;
+            background: #f8fafc;
+            color: #64748b;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .report-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            color: var(--dark-slate);
+            vertical-align: middle;
+        }
+
+        /* Search Box Fix */
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            padding: 10px 15px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 350px;
+            gap: 10px;
+        }
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        /* Badge and Button Fix */
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .badge-aml { background: #fee2e2; color: #ef4444; }
+
+        .btn-download {
+            background-color: var(--accent-green);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-download:hover { background: #059669; }
